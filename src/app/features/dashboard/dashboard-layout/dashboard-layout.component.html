@@ -1,0 +1,36 @@
+<mat-sidenav-container class="layout">
+
+  <!-- Sidebar -->
+  <mat-sidenav
+    #sidenav
+    mode="side"
+    class="layout__sidebar"
+    [opened]="true"
+  >
+    <mat-nav-list class="sidebar-nav">
+      <a mat-list-item class="sidebar-nav__item" routerLink="/dashboard">Dashboard</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- Main Area -->
+  <mat-sidenav-content class="layout__content">
+
+    <mat-toolbar color="primary" class="layout__header">
+      <button
+        mat-icon-button
+        class="layout__menu-btn"
+        (click)="sidenav.toggle()"
+      >
+        <mat-icon class="material-icons-outlined">menu</mat-icon>
+      </button>
+
+      <span class="layout__brand">Cloud-fi</span>
+    </mat-toolbar>
+
+    <div class="layout__router-area">
+      <router-outlet></router-outlet>
+    </div>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
