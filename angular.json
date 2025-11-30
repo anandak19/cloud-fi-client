@@ -20,6 +20,9 @@
             "outputPath": "dist/cloud-fi-client",
             "index": "src/index.html",
             "browser": "src/main.ts",
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/app/styles"]
+            },
             "polyfills": [
               "zone.js"
             ],

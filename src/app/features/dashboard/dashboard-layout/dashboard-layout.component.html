@@ -1,20 +1,25 @@
 <mat-sidenav-container class="layout">
-
   <!-- Sidebar -->
   <mat-sidenav
     #sidenav
-    mode="side"
+    [mode]="isHandset() ? 'over' : 'side'"
     class="layout__sidebar"
-    [opened]="true"
+    [opened]="!isHandset()"
   >
     <mat-nav-list class="sidebar-nav">
-      <a mat-list-item class="sidebar-nav__item" routerLink="/dashboard">Dashboard</a>
+      <a
+        mat-list-item
+        class="sidebar-nav__item"
+        routerLink="routers"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Dashboard</a
+      >
     </mat-nav-list>
   </mat-sidenav>
 
   <!-- Main Area -->
   <mat-sidenav-content class="layout__content">
-
     <mat-toolbar color="primary" class="layout__header">
       <button
         mat-icon-button
@@ -30,7 +35,5 @@
     <div class="layout__router-area">
       <router-outlet></router-outlet>
     </div>
-
   </mat-sidenav-content>
-
 </mat-sidenav-container>

@@ -5,6 +5,11 @@ import { UserRoutersSalesComponent } from './pages/user-routers-sales/user-route
 export const DashboardRoutes: Routes = [
   {
     path: '',
+    redirectTo: 'routers',
+    pathMatch: 'full'
+  },
+  {
+    path: 'routers',
     component: UserRoutersComponent,
   },
   {

@@ -1,2 +1,15 @@
-<p>user-routers works!</p>
-<button (click)="navigateSales()">See sales</button>
+<div class="user-routers">
+  <app-page-title title="Your Routers">
+  </app-page-title>
+  <app-table-listing
+    [columns]="sampleColumns"
+    [dataSource]="paginatedData"
+    [editable]="false"
+    (viewClicked)="navigateSales($event)"
+  ></app-table-listing>
+
+  <app-paginator
+    [dataLength]="routers.length"
+    (onPaginatorEvent)="onPageChange($event)"
+  ></app-paginator>
+</div>
