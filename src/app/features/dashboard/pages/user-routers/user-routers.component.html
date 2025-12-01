@@ -1,6 +1,5 @@
 <div class="user-routers">
-  <app-page-title title="Your Routers">
-  </app-page-title>
+  <app-page-title title="Your Routers"> </app-page-title>
   <app-table-listing
     [columns]="sampleColumns"
     [dataSource]="paginatedData"
@@ -8,8 +7,10 @@
     (viewClicked)="navigateSales($event)"
   ></app-table-listing>
 
+  @if(routers.length > 0) {
   <app-paginator
     [dataLength]="routers.length"
     (onPaginatorEvent)="onPageChange($event)"
   ></app-paginator>
+  }
 </div>

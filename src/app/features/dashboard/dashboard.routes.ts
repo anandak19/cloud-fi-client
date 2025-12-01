@@ -13,7 +13,7 @@ export const DashboardRoutes: Routes = [
     component: UserRoutersComponent,
   },
   {
-    path: 'sales',
+    path: 'routers/sales',
     component: UserRoutersSalesComponent,
   },
 ];
