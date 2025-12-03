@@ -7,13 +7,16 @@
     [opened]="!isHandset()"
   >
     <mat-nav-list class="sidebar-nav">
-      <a
-        mat-list-item
-        class="sidebar-nav__item"
-        routerLink="routers"
-        routerLinkActive="active"
-        >Dashboard</a
-      >
+      <div class="links">
+        <a
+          mat-list-item
+          class="sidebar-nav__item"
+          routerLink="routers"
+          routerLinkActive="active"
+          >Dashboard</a
+        >
+      </div>
+      <app-button variant="danger" (clickEvent)="onLogout()">Logout</app-button>
     </mat-nav-list>
   </mat-sidenav>
 

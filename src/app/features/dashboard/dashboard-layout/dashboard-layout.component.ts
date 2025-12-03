@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 
-import { RouterOutlet, RouterLinkActive, RouterLink } from '@angular/router';
+import { RouterOutlet, RouterLinkActive, RouterLink, Router } from '@angular/router';
 
 // Angular Material
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -9,6 +9,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { ButtonComponent } from '../../../shared/components/ui/button/button.component';
+import { AuthService } from '../../auth/services/auth.service';
+import { SnackbarService } from '../../../core/services/snackbar/snackbar.service';
 
 @Component({
   selector: 'app-dashboard-layout',
@@ -20,8 +23,9 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
     MatButtonModule,
     MatListModule,
     RouterLink,
-    RouterLinkActive
-],
+    RouterLinkActive,
+    ButtonComponent,
+  ],
   templateUrl: './dashboard-layout.component.html',
   styleUrl: './dashboard-layout.component.scss',
 })
@@ -29,7 +33,10 @@ export class DashboardLayoutComponent {
   isSidebarOpen = true;
   isHandset = signal<boolean>(false);
 
+  private _auth = inject(AuthService);
+  private _snackbar = inject(SnackbarService)
   private breakpointObserver = inject(BreakpointObserver);
+  private _router = inject(Router)
 
   constructor() {
     this.breakpointObserver
@@ -37,6 +44,18 @@ export class DashboardLayoutComponent {
       .subscribe((result) => {
         this.isHandset.set(result.matches);
       });
+  }
+
+  onLogout() {
+    this._auth.logout().subscribe({
+      next: () => {
+        this._snackbar.success("Account logout successfully")
+        this._router.navigate(['/login'])
+      },
+      error: () => {
+        this._snackbar.error("An error occoured while logging out")
+      }
+    })
   }
 
   toggleSidebar() {
