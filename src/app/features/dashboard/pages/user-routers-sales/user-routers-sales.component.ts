@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit, signal } from '@angular/core';
 import { PageTitleComponent } from '../../components/ui/page-title/page-title.component';
 import { BackButtonComponent } from '../../components/ui/back-button/back-button.component';
 import { RouterSalesCardComponent } from '../../components/logic/router-sales-card/router-sales-card.component';
@@ -7,6 +7,8 @@ import { IMatColumns } from '../../../../shared/interfaces/table.interface';
 import { ICoupon } from '../../models/coupons.model';
 import { PaginatorComponent } from '../../components/logic/paginator/paginator.component';
 import { PageEvent } from '@angular/material/paginator';
+import { RoutersService } from '../../services/routers/routers.service';
+import { IRouterCashData } from '../../models/userRouters.model';
 
 @Component({
   selector: 'app-user-routers-sales',
@@ -24,6 +26,13 @@ export class UserRoutersSalesComponent implements OnInit {
   @Input() hotspotName!: string;
   @Input() totalSales!: number;
   @Input() cashCollected!: number;
+
+  @Input() routerId!: string;
+
+  routerCashData = signal<IRouterCashData | null>(null);
+
+  // router service
+  private _routerService = inject(RoutersService);
 
   pageSize = 5;
   pageIndex = 0;
@@ -281,12 +290,25 @@ export class UserRoutersSalesComponent implements OnInit {
     this.paginatedData = this.coupons.slice(start, end);
   }
 
+  getRouterCashData() {
+    this._routerService.getRouterCashData(this.routerId).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.routerCashData.set(res);
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
+  }
+
   ngOnInit(): void {
     this.totalSales = 1000;
     this.cashCollected = 300;
     this.hotspotName = 'My hotspot';
-    
-    window.scrollTo(0, 0)
+
+    window.scrollTo(0, 0);
     this.updatePaginatedData();
+    this.getRouterCashData();
   }
 }

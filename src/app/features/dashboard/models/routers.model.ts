@@ -4,7 +4,7 @@ export interface IRouter {
   dns: string;
   userName: string;
   callerId: string;
-  id?: string;
+  _id?: string;
 }
 
 export interface IUserRouter extends IRouter {

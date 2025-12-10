@@ -23,7 +23,7 @@ export class UserRoutersComponent implements OnInit {
   pageIndex = 0;
   paginatedData: IRouter[] = [];
 
-  sampleColumns: IMatColumns[] = [
+  columns: IMatColumns[] = [
     { label: 'Device Name', key: 'deviceName' },
     { label: 'PORT', key: 'port' },
     { label: 'DNS', key: 'dns' },
@@ -286,7 +286,7 @@ export class UserRoutersComponent implements OnInit {
   }
 
   navigateSales(id: string) {
-    this._router.navigate(['sales'], { relativeTo: this._activatedRoute });
+    this._router.navigate([`${id}`], { relativeTo: this._activatedRoute });
   }
 
   onPageChange(event: PageEvent) {
@@ -299,7 +299,7 @@ export class UserRoutersComponent implements OnInit {
     const start = this.pageIndex * this.pageSize;
     const end = start + this.pageSize;
     this.paginatedData = this.routers.slice(start, end).map((item) => ({
-      id: item.id,
+      id: item.router._id,
       deviceName: item.router.deviceName,
       port: item.router.port,
       dns: item.router.dns,

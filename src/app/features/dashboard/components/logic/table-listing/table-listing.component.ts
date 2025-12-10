@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { IMatColumns } from '../../../../../shared/interfaces/table.interface';
 import { ButtonComponent } from '../../../../../shared/components/ui/button/button.component';
@@ -21,8 +27,6 @@ export class TableListingComponent<T> {
 
   get displayedColumns(): string[] {
     const cols = this.columns.map((c) => c.key);
-    console.log(cols);
-    
 
     if (this.actions) {
       return [...cols, 'actions'];
@@ -39,9 +43,8 @@ export class TableListingComponent<T> {
     this.editClicked.emit(id);
   }
 
-    ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(changes: SimpleChanges) {
     if (changes['dataSource']) {
-      console.log("DataSource:", this.dataSource);
     }
   }
 }

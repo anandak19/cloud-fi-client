@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { IListUserRouter } from '../../models/routers.model';
+import { IRouterCashData } from '../../models/userRouters.model';
 
 @Injectable({
   providedIn: 'root',
@@ -12,8 +13,10 @@ export class RoutersService {
     return this._http.get<IListUserRouter[]>(this.API_ENDPOINT);
   }
 
-  getRouterSales() {
-    return 'ys';
+  getRouterCashData(routerId: string) {
+    return this._http.get<IRouterCashData>(
+      `${this.API_ENDPOINT}/${routerId}/cash`
+    );
   }
 
   getRouterVouchers() {

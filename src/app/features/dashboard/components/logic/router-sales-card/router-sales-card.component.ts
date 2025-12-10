@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { MatCard } from "@angular/material/card";
+import { Component, Input, signal } from '@angular/core';
+import { MatCard } from '@angular/material/card';
+import { IRouterCashData } from '../../../models/userRouters.model';
 
 @Component({
   selector: 'app-router-sales-card',
@@ -8,11 +9,5 @@ import { MatCard } from "@angular/material/card";
   styleUrl: './router-sales-card.component.scss',
 })
 export class RouterSalesCardComponent {
-  @Input() hotspotName!: string;
-  @Input() totalSales!: number;
-  @Input() cashCollected!: number;
-
-  get balance(): number {
-    return this.totalSales - this.cashCollected;
-  }
+  @Input() routerCashData = signal<IRouterCashData | null>(null);
 }
