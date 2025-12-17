@@ -1,6 +1,6 @@
 import { Component, Input, signal } from '@angular/core';
 import { MatCard } from '@angular/material/card';
-import { IRouterCashData } from '../../../models/userRouters.model';
+import { IRouterCashData } from '@features/dashboard/models/userRouters.model';
 
 @Component({
   selector: 'app-router-sales-card',

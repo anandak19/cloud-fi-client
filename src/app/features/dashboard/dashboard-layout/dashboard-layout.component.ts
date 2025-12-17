@@ -9,9 +9,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { ButtonComponent } from '../../../shared/components/ui/button/button.component';
-import { AuthService } from '../../auth/services/auth.service';
-import { SnackbarService } from '../../../core/services/snackbar/snackbar.service';
+import { SnackbarService } from '@core/services/snackbar/snackbar.service';
+import { AuthService } from '@features/auth/services/auth.service';
+import { ButtonComponent } from '@shared/components/ui/button/button.component';
 
 @Component({
   selector: 'app-dashboard-layout',

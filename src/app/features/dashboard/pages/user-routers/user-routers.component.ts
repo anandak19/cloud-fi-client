@@ -1,12 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { PageTitleComponent } from '../../components/ui/page-title/page-title.component';
-import { TableListingComponent } from '../../components/logic/table-listing/table-listing.component';
-import { IMatColumns } from '../../../../shared/interfaces/table.interface';
-import { IListUserRouter, IRouter } from '../../models/routers.model';
-import { PaginatorComponent } from '../../components/logic/paginator/paginator.component';
 import { PageEvent } from '@angular/material/paginator';
-import { RoutersService } from '../../services/routers/routers.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PaginatorComponent } from '@features/dashboard/components/logic/paginator/paginator.component';
+import { TableListingComponent } from '@features/dashboard/components/logic/table-listing/table-listing.component';
+import { PageTitleComponent } from '@features/dashboard/components/ui/page-title/page-title.component';
+import { IRouter, IListUserRouter } from '@features/dashboard/models/routers.model';
+import { RoutersService } from '@features/dashboard/services/routers/routers.service';
+import { IMatColumns } from '@shared/interfaces/table.interface';
 
 @Component({
   selector: 'app-user-routers',

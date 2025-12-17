@@ -7,8 +7,8 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
-import { IMatColumns } from '../../../../../shared/interfaces/table.interface';
-import { ButtonComponent } from '../../../../../shared/components/ui/button/button.component';
+import { ButtonComponent } from '@shared/components/ui/button/button.component';
+import { IMatColumns } from '@shared/interfaces/table.interface';
 
 @Component({
   selector: 'app-table-listing',

@@ -10,10 +10,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { AuthService } from '../services/auth.service';
-import { ILoginData } from '../models/login.model';
 import { Router } from '@angular/router';
-import { SnackbarService } from '../../../core/services/snackbar/snackbar.service';
+import { SnackbarService } from '@core/services/snackbar/snackbar.service';
+import { ILoginData } from '../models/login.model';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',

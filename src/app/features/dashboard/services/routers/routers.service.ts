@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { IListUserRouter } from '../../models/routers.model';
-import { IRouterCashData } from '../../models/userRouters.model';
+import { IUserVoucherSaleResponse } from '@features/dashboard/models/coupons.model';
+import { IListUserRouter } from '@features/dashboard/models/routers.model';
+import { IRouterCashData } from '@features/dashboard/models/userRouters.model';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +20,7 @@ export class RoutersService {
     );
   }
 
-  getRouterVouchers() {
-    return 'ho';
+  getRouterVouchers(routerId: string) {
+    return this._http.get<IUserVoucherSaleResponse>(`${this.API_ENDPOINT}/${routerId}`);
   }
 }

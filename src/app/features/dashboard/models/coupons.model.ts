@@ -1,8 +1,27 @@
+
 export interface ICoupon {
-  phoneNumber: string;
-  couponCount: number;
+  id: string;
   couponNumber?: string;
   profile: string;
+  count: number;
   cost: number;
-  date: Date | string;
+  phoneNumber: string;
+  date: string;
+  createdAt: string;
 }
+
+export interface IDateRangeInfo {
+  period: string;
+  startDate: string | null;
+  endDate: string | null;
+}
+
+//resonse body
+export interface IUserVouchersPayload {
+  vouchers: ICoupon[];
+}
+
+export interface IUserVoucherSaleResponse
+  extends IDateRangeInfo,
+    IUserVouchersPayload {}
+
