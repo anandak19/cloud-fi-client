@@ -59,7 +59,7 @@
     }
 
     &:disabled {
-      background-color: color.adjust($primary-color, $lightness: 15%);
+      background-color: $primary-color-active;
       color: color.adjust($black, $lightness: 20%);
       cursor: not-allowed;
       pointer-events: none;

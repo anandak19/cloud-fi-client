@@ -1,9 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  signal,
+} from '@angular/core';
+import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-button',
-  imports: [CommonModule],
+  imports: [CommonModule, MatButtonModule, MatProgressSpinnerModule],
   templateUrl: './button.component.html',
   styleUrl: './button.component.scss',
 })
@@ -12,6 +21,7 @@ export class ButtonComponent {
   @Input() variant: 'primary' | 'secondary' | 'danger' = 'primary';
   @Input() size: 'small' | 'medium' | 'large' = 'medium';
   @Input() type: 'button' | 'submit' | 'reset' = 'button';
+  @Input() isLoading = signal<boolean>(false);
 
   @Output() clickEvent = new EventEmitter();
   onBtnClick() {

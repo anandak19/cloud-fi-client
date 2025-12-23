@@ -1,6 +1,6 @@
-@use '../base' as *;
-@use '../abstracts' as *;
-@use '@angular/material' as mat;
+@use "../base" as *;
+@use "../abstracts" as *;
+@use "@angular/material" as mat;
 
 // snackbar
 .mat-snackbar-panel-custom {
@@ -29,17 +29,18 @@
   justify-content: center;
 }
 
-// spinner
 :root {
+  // spinner
   @include mat.progress-spinner-overrides(
     (
-      active-indicator-color: rgb(0, 0, 0),
-      size: 24px,
+      active-indicator-color: #000000,
+      size: 1px,
+      active-indicator-width: 1px,
     )
   );
 }
 
-.spinner {
-  width: 22px !important;
-  height: 22px !important;
-}
+// .spinner {
+//   width: 22px !important;
+//   height: 22px !important;
+// }

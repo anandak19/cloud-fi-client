@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -14,6 +14,8 @@ import { Router } from '@angular/router';
 import { SnackbarService } from '@core/services/snackbar/snackbar.service';
 import { ILoginData } from '../models/login.model';
 import { AuthService } from '../services/auth.service';
+import { ButtonComponent } from '@shared/components/ui/button/button.component';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -24,17 +26,19 @@ import { AuthService } from '../services/auth.service';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    ButtonComponent,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
+  isLoading = signal<boolean>(false);
   private _fb = inject(FormBuilder);
 
   private _auth = inject(AuthService);
-  private _router = inject(Router)
-  private _snackbar = inject(SnackbarService)
+  private _router = inject(Router);
+  private _snackbar = inject(SnackbarService);
 
   initForm() {
     this.loginForm = this._fb.group({
@@ -53,17 +57,21 @@ export class LoginComponent implements OnInit {
       password: loginFormVals.password,
     };
 
-    this._auth.login(loginData).subscribe({
-      next: (res) =>{
-        console.log(res)
-        this._snackbar.success("Login Success")
-        this._router.navigate(['dashboard'])
-      },
-      error: (err) => {
-        console.log(err)
-        this._snackbar.error("Faild to login")
-      }
-    })
+    this.isLoading.set(true);
+    this._auth
+      .login(loginData)
+      .pipe(finalize(() => this.isLoading.set(false)))
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+          this._snackbar.success('Login Success');
+          this._router.navigate(['dashboard']);
+        },
+        error: (err) => {
+          console.log(err);
+          this._snackbar.error('Faild to login');
+        },
+      });
 
     console.log(this.loginForm.value);
   }
